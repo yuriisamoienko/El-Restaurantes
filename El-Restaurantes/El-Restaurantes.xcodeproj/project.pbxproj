@@ -29,6 +29,7 @@
 		5A9BE57526B728190081FF1C /* RestaurantsRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9BE57426B728190081FF1C /* RestaurantsRepositoryProtocol.swift */; };
 		5A9BE57926B7374D0081FF1C /* MKMapView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9BE57826B7374D0081FF1C /* MKMapView+Extension.swift */; };
 		5A9BE57D26B742F10081FF1C /* ViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9BE57C26B742F10081FF1C /* ViewControllerFactory.swift */; };
+		5A9BE58226B74CD60081FF1C /* RestaurantFullInfoPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9BE58126B74CD60081FF1C /* RestaurantFullInfoPresenter.swift */; };
 		5AD72AD426B15F9B0072CD9C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD72AD326B15F9B0072CD9C /* AppDelegate.swift */; };
 		5AD72ADD26B15F9C0072CD9C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5AD72ADC26B15F9C0072CD9C /* Images.xcassets */; };
 		5AD72AE026B15F9C0072CD9C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5AD72ADE26B15F9C0072CD9C /* LaunchScreen.storyboard */; };
@@ -78,6 +79,7 @@
 		5A9BE57426B728190081FF1C /* RestaurantsRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsRepositoryProtocol.swift; sourceTree = "<group>"; };
 		5A9BE57826B7374D0081FF1C /* MKMapView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MKMapView+Extension.swift"; sourceTree = "<group>"; };
 		5A9BE57C26B742F10081FF1C /* ViewControllerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerFactory.swift; sourceTree = "<group>"; };
+		5A9BE58126B74CD60081FF1C /* RestaurantFullInfoPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantFullInfoPresenter.swift; sourceTree = "<group>"; };
 		5AD72AD026B15F9B0072CD9C /* El-Restaurantes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "El-Restaurantes.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AD72AD326B15F9B0072CD9C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5AD72ADC26B15F9C0072CD9C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -273,6 +275,7 @@
 		5AD72AED26B1D51D0072CD9C /* Presenters */ = {
 			isa = PBXGroup;
 			children = (
+				5A9BE58126B74CD60081FF1C /* RestaurantFullInfoPresenter.swift */,
 			);
 			path = Presenters;
 			sourceTree = "<group>";
@@ -389,6 +392,7 @@
 				5A9BE56B26B724630081FF1C /* String+Localization.swift in Sources */,
 				5AD72AF626B1D7E90072CD9C /* MapRestaurantsVC.swift in Sources */,
 				5A9BE4E326B6910E0081FF1C /* RestaurantFullInfoVC.swift in Sources */,
+				5A9BE58226B74CD60081FF1C /* RestaurantFullInfoPresenter.swift in Sources */,
 				5A9BE4A326B488340081FF1C /* ListRestaurantTableViewCell.swift in Sources */,
 				5A9BE4E626B694910081FF1C /* AppRouterProtocol.swift in Sources */,
 				5AD72AFA26B1D82B0072CD9C /* UITableViewControllerBase.swift in Sources */,

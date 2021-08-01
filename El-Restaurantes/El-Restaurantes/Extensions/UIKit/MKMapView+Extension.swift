@@ -49,4 +49,9 @@ extension MKMapView {
         let span = MKCoordinateSpan(latitudeDelta: 0, longitudeDelta: 360 / pow(2, Double(zoomLevel)) * Double(self.frame.size.width) / 256)
         setRegion(MKCoordinateRegion(center: coordinate, span: span), animated: animated)
     }
+    
+    func removeAllAnotations() {
+        let allAnnotations = self.annotations
+        removeAnnotations(allAnnotations)
+    }
 }

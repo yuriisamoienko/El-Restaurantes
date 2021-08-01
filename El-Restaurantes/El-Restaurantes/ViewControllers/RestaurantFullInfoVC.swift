@@ -17,7 +17,16 @@ import FoundationExtension
  - location on map
  */
 
-final class RestaurantFullInfoVC: UIViewControllerBase {
+protocol RestaurantFullInfoVcProtocol: UIViewController {
+    var name: String { get set }
+    var price: Int { get set }
+    var address: String { get set }
+    var distance: String { get set }
+    var mapPointAnnotation: MKAnnotation? { get set }
+    
+}
+
+final class RestaurantFullInfoVC: UIViewControllerBase, RestaurantFullInfoVcProtocol {
     
     // MARK: Public Properties
     
@@ -36,12 +45,18 @@ final class RestaurantFullInfoVC: UIViewControllerBase {
             onAddressDidSet()
         }
     }
-    public var distance: Double = 0 {
+    public var distance: String = "" {
         didSet {
             onDistanceDidSet()
         }
     }
-    public var mapPointAnnotation: MKAnnotation?
+    public var mapPointAnnotation: MKAnnotation? {
+        didSet {
+            onMapPointAnnotationDidSet()
+        }
+    }
+    
+    public var presenter: RestaurantFullInfoPresenterProtocol!
     
     // MARK: Private Properties
     
@@ -64,24 +79,15 @@ final class RestaurantFullInfoVC: UIViewControllerBase {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        presenter.updateView()
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        let didAppearOnce = self.didAppearOnce
         super.viewDidAppear(animated)
-
-        if didAppearOnce == false,
-           let annotation = mapPointAnnotation {
-            mapView.addAnnotation(annotation)
-            mapView.setCenter(coordinate: annotation.coordinate, zoomLevel: 15, animated: false)
-
-            // map doesn't show the annotaion immediately, so let's show loading animation to avoid jumping of map region
-            debounce(delay: 0.5) { [unowned self] in
-                self.mapLoadingSpinnerContainer.hide()
-                self.mapLoadingSpinner.stopAnimating()
-            }
-        }
     }
+    
+    // MARK: RestaurantFullInfoVcProtocol
     
     // MARK: Private Functions
 
@@ -98,12 +104,7 @@ final class RestaurantFullInfoVC: UIViewControllerBase {
     }
     
     private func onDistanceDidSet() {
-        // need format distance
-        let df = MKDistanceFormatter()
-        df.unitStyle = .abbreviated
-        df.units = .metric
-        let prettyString = df.string(fromDistance: distance) // formated distance in m or km
-        distanceLabel.text = prettyString
+        distanceLabel.text = distance
     }
     
     private func configureUI() {
@@ -161,4 +162,15 @@ final class RestaurantFullInfoVC: UIViewControllerBase {
         contentStackView.pinEdges(to: view.layoutMarginsGuide, spacingHorizontal: 0, spacingVertical: 10)
     }
     
+    private func onMapPointAnnotationDidSet() {
+        mapView.removeAllAnotations()
+        guard let annotation = mapPointAnnotation else { return }
+        mapView.addAnnotation(annotation)
+        mapView.setCenter(coordinate: annotation.coordinate, zoomLevel: 15, animated: false)
+        
+        debounce(delay: 0.5) { [unowned self] in
+            self.mapLoadingSpinnerContainer.hide()
+            self.mapLoadingSpinner.stopAnimating()
+        }
+    }
 }

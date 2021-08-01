@@ -12,6 +12,8 @@ import FoundationExtension
 protocol ViewControllerFactoryProtocol {
     
     func createMapRestaurants() -> UIViewController
+    func createListRestaurants() -> UIViewController
+    func createRestaurantFullInfo(with: RestaurantEntity) -> UIViewController
 }
 
 final class ViewControllerFactory: ViewControllerFactoryProtocol {
@@ -21,5 +23,17 @@ final class ViewControllerFactory: ViewControllerFactoryProtocol {
     func createMapRestaurants() -> UIViewController {
         let result = MapRestaurantsVC()
         return result
+    }
+    
+    func createListRestaurants() -> UIViewController {
+        let result = ListRestaurantsVC()
+        return result
+    }
+    
+    func createRestaurantFullInfo(with entity: RestaurantEntity) -> UIViewController {
+        let vc = RestaurantFullInfoVC()
+        let presenter: RestaurantFullInfoPresenterProtocol = RestaurantFullInfoPresenter(view: vc, entity: entity)
+        vc.presenter = presenter
+        return vc
     }
 }
