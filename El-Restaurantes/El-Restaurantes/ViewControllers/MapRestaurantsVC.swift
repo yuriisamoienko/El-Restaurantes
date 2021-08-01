@@ -9,14 +9,20 @@ import UIKit
 import MapKit
 import FoundationExtension
 
+/*
+ A mapView with fetched restaurants.
+ User can select a restaurant on map to open Details screen
+ */
+
 final class MapRestaurantsVC: UIViewControllerBase, MKMapViewDelegate {
     
     // MARK: Private Properties
-    private let mapView = MKMapView()
     
+    private let mapView = MKMapView()
     private var annotations: [MKRestaurantAnnotation] = []
     
-    // Dependencies injection
+    // MARK: Dependency injection
+    
     @Inject private var locationManager: LocationManagerProtocol
     @Inject private var restaurantsRepository: RestaurantsRepositoryProtocol
     @Inject private var appRouter: RootAppRouterProtocol
@@ -32,7 +38,6 @@ final class MapRestaurantsVC: UIViewControllerBase, MKMapViewDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -43,9 +48,6 @@ final class MapRestaurantsVC: UIViewControllerBase, MKMapViewDelegate {
             locationManager.requestLocation(from: self) { _ in
                 
                 self.locationManager.getLocation { [unowned self] result in
-        //            guard self.isVisible() == true else {
-        //                return
-        //            }
                     switch result {
                     case .success(let location):
                         printFuncLog("location: \(location)")
@@ -56,18 +58,14 @@ final class MapRestaurantsVC: UIViewControllerBase, MKMapViewDelegate {
                     }
                 }
             }
-//            debounce(delay: 0.1) {
-//                self.appRouter.show(item: .restaurantFullInfo, sender: self)
-//            }
         }
-        if didAppearOnce == false || annotations.isEmpty == true { // view appears for a first time
+        if didAppearOnce == false || annotations.isEmpty == true {
             reloadData()
         }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        //locationManager.remove(observer: self)
     }
     
     deinit {
@@ -80,7 +78,6 @@ final class MapRestaurantsVC: UIViewControllerBase, MKMapViewDelegate {
         let entity = (view.annotation as? MKRestaurantAnnotation)?.entity
         self.appRouter.show(item: .restaurantFullInfo, sender: self, info: entity)
     }
-    
 
     // MARK: Private Functions
     
@@ -90,19 +87,11 @@ final class MapRestaurantsVC: UIViewControllerBase, MKMapViewDelegate {
     }
     
     private func configureMapView() {
-        // Set initial location in Honolulu
-//        let initialLocation = CLLocationCoordinate2D(latitude: 21.282778, longitude: -157.829444)
-//        mapView.centerCoordinate = initialLocation
-//        mapView.centerToLocation(initialLocation)
         mapView.showsUserLocation = true
-        if true {
-            
-        }
-     
         mapView.userTrackingMode = .none
         mapView.delegate = self
         self.view.addSubview(mapView)
-        mapView.fillParentFrame()
+        mapView.pinEdges(to: view)
     }
     
     private func reloadData() {
@@ -122,7 +111,6 @@ final class MapRestaurantsVC: UIViewControllerBase, MKMapViewDelegate {
             }
         }
     }
-    
     
     private func putAnnotationsOnMap() {
         mapView.addAnnotations(annotations)

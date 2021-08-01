@@ -27,6 +27,7 @@
 		5A9BE56826B71C6D0081FF1C /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9BE56726B71C6D0081FF1C /* UIColor+Extension.swift */; };
 		5A9BE56B26B724630081FF1C /* String+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9BE56A26B724630081FF1C /* String+Localization.swift */; };
 		5A9BE57526B728190081FF1C /* RestaurantsRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9BE57426B728190081FF1C /* RestaurantsRepositoryProtocol.swift */; };
+		5A9BE57926B7374D0081FF1C /* MKMapView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9BE57826B7374D0081FF1C /* MKMapView+Extension.swift */; };
 		5AD72AD426B15F9B0072CD9C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD72AD326B15F9B0072CD9C /* AppDelegate.swift */; };
 		5AD72ADD26B15F9C0072CD9C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5AD72ADC26B15F9C0072CD9C /* Images.xcassets */; };
 		5AD72AE026B15F9C0072CD9C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5AD72ADE26B15F9C0072CD9C /* LaunchScreen.storyboard */; };
@@ -74,6 +75,7 @@
 		5A9BE56726B71C6D0081FF1C /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		5A9BE56A26B724630081FF1C /* String+Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Localization.swift"; sourceTree = "<group>"; };
 		5A9BE57426B728190081FF1C /* RestaurantsRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsRepositoryProtocol.swift; sourceTree = "<group>"; };
+		5A9BE57826B7374D0081FF1C /* MKMapView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MKMapView+Extension.swift"; sourceTree = "<group>"; };
 		5AD72AD026B15F9B0072CD9C /* El-Restaurantes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "El-Restaurantes.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AD72AD326B15F9B0072CD9C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5AD72ADC26B15F9C0072CD9C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -178,6 +180,7 @@
 			isa = PBXGroup;
 			children = (
 				5A9BE56726B71C6D0081FF1C /* UIColor+Extension.swift */,
+				5A9BE57826B7374D0081FF1C /* MKMapView+Extension.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -384,6 +387,7 @@
 				5A9BE56826B71C6D0081FF1C /* UIColor+Extension.swift in Sources */,
 				5AD72AF226B1D7170072CD9C /* UIViewControllerBase.swift in Sources */,
 				5AD72AFC26B1DB030072CD9C /* ImagesAssets.swift in Sources */,
+				5A9BE57926B7374D0081FF1C /* MKMapView+Extension.swift in Sources */,
 				5A9BE4DA26B5AD1C0081FF1C /* UITableViewCellBase.swift in Sources */,
 				5AD72AF426B1D77D0072CD9C /* MainTabBarController.swift in Sources */,
 				5A9BE4AE26B48C910081FF1C /* ApiMethods.swift in Sources */,

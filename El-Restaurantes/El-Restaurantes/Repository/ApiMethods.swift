@@ -7,7 +7,7 @@
 
 import Foundation
 
-class ApiMethods {
+final class ApiMethods {
     
     // MARK: Private Properties
     

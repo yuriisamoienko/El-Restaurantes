@@ -12,7 +12,7 @@ import UIKit
  It handles both remote and local (future feature) repositories
  */
 
-class RestaurantsRepository: NSObject, RestaurantsRepositoryProtocol {
+final class RestaurantsRepository: NSObject, RestaurantsRepositoryProtocol {
     
     // MARK: Private Properties
     

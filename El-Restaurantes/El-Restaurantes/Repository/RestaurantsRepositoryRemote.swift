@@ -8,7 +8,7 @@
 import FoundationExtension
 import UIKit
 
-class RestaurantsRepositoryRemote: NSObject, RestaurantsRepositoryProtocol {
+final class RestaurantsRepositoryRemote: NSObject, RestaurantsRepositoryProtocol {
 
     // MARK: RestaurantsRepositoryProtocol
     

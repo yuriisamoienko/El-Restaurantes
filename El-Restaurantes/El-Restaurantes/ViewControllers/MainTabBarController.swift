@@ -7,12 +7,20 @@
 
 import UIKit
 
-class MainTabBarController: UITabBarController {
+/*
+ Main bottom tab bar
+ */
+
+final class MainTabBarController: UITabBarController {
+    
+    // MARK: Types
     
     enum Tab: Int {
         case mapRestaurants
         case listRestaurants
     }
+    
+    // MARK: Public Properties
     
     public var selectedTab: Tab {
         set {
@@ -24,6 +32,8 @@ class MainTabBarController: UITabBarController {
         }
     }
     
+    // MARK: Private Properties
+    
     private var tabViewControllers: [UIViewController] = [] {
         didSet {
             viewControllers = tabViewControllers
@@ -34,11 +44,6 @@ class MainTabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        if #available(iOS 13.0, *) {
-//            view.backgroundColor = .systemBackground
-//        } else {
-//            view.backgroundColor = .white
-//        }
         view.backgroundColor = .systemBackgroundColor
         
         configureTabs()
@@ -47,11 +52,8 @@ class MainTabBarController: UITabBarController {
     // MARK: Private Functions
     
     private func configureTabs() {
-        let mapVC = MapRestaurantsVC()
-       
-        
+        let mapVC = MapRestaurantsVC() //TODO factory
         let listVC = ListRestaurantsVC()
-        
         
         addTab(mapVC) { tabBar in
             tabBar.image = .icons.mapFill
@@ -64,12 +66,13 @@ class MainTabBarController: UITabBarController {
         
     }
     
+    // add tab vc and wrap it into UINavigationController
+    // use 'configure' to setup tab icon and title
     private func addTab(_ vc: UIViewController, configure: @escaping (UIBarItem) -> Void) {
         let navigationVC = UINavigationController(rootViewController: vc)
         navigationVC.hideNavigationBar()
         
-        let tabVC = navigationVC// vc
-//        navigationVC.pushViewController(vc, animated: false)
+        let tabVC = navigationVC
         tabViewControllers.append(tabVC)
         configure(tabVC.tabBarItem)
     }

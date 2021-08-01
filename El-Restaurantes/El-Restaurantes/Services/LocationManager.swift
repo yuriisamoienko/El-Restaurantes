@@ -32,7 +32,7 @@ protocol LocationManagerProtocol {
 
 typealias CLLocationResult = Result<CLLocation, Error>
 
-class LocationManager: NSObject, LocationManagerProtocol, CLLocationManagerDelegate {
+final class LocationManager: NSObject, LocationManagerProtocol, CLLocationManagerDelegate {
     
     // MARK: Private Properties
     private let locationManager = CLLocationManager()
