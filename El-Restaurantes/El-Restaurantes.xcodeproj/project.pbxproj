@@ -84,6 +84,7 @@
 		5A9BE58126B74CD60081FF1C /* RestaurantFullInfoPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantFullInfoPresenter.swift; sourceTree = "<group>"; };
 		5A9BE58326B752000081FF1C /* ListRestaurantsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListRestaurantsPresenter.swift; sourceTree = "<group>"; };
 		5A9BE58526B7566D0081FF1C /* MapRestaurantsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapRestaurantsPresenter.swift; sourceTree = "<group>"; };
+		5A9BE58726B75E0B0081FF1C /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../../../README.md; sourceTree = "<group>"; };
 		5AD72AD026B15F9B0072CD9C /* El-Restaurantes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "El-Restaurantes.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AD72AD326B15F9B0072CD9C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5AD72ADC26B15F9C0072CD9C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -152,6 +153,7 @@
 		5A9BE4DF26B690CA0081FF1C /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
+				5A9BE58726B75E0B0081FF1C /* README.md */,
 			);
 			path = SupportingFiles;
 			sourceTree = "<group>";
