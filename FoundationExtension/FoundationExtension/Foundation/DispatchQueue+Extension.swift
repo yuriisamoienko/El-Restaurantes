@@ -9,6 +9,8 @@ import Foundation
 
 public extension DispatchQueue {
     
+    // MARK: Public Properties
+    
     static var background: DispatchQueue {
         return DispatchQueue.global(qos: .background)
     }

@@ -7,10 +7,13 @@
 
 import Foundation
 
+/*
+ DependenciesInjector is a service for injection of all app services
+ */
+
 public protocol DependenciesInjectorProtocol {
     
     func inject()
-    func add<T>(_ factory: @escaping () -> T)
     
 }
 
@@ -24,13 +27,13 @@ public extension DependenciesInjectorProtocol {
 
 fileprivate class Dependencies {
 
-    // MARK: Properties
+    // MARK: Private Properties
     
-    static var root: Dependencies = {
+    static fileprivate var root: Dependencies = {
         let instance = Dependencies()
         return instance
     }()
-    var factories = [String: () -> Any]()
+    private var factories = [String: () -> Any]()
 
     // MARK: Functions
     
@@ -39,7 +42,7 @@ fileprivate class Dependencies {
         factories[key] = factory
     }
     
-    fileprivate func resolve<T>() -> T {
+    func resolve<T>() -> T {
         let key = String(describing: T.self)
 
         guard let component: T = factories[key]?() as? T else {

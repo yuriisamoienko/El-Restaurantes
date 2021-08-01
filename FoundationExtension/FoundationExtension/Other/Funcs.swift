@@ -7,6 +7,7 @@
 
 import Foundation
 
+// dimplify delay of task
 public func debounce(queue: DispatchQueue = .main, delay: Double, closure: @escaping() -> Void) {
     queue.asyncAfter(deadline: .now() + delay) {
         closure()

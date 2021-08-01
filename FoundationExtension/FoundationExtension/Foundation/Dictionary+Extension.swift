@@ -9,6 +9,8 @@ import Foundation
 
 public extension Dictionary {
     
+    // MARK: Public Functions
+    
     func toData() throws -> Data {
         let result = try JSONSerialization.data(
             withJSONObject: self,

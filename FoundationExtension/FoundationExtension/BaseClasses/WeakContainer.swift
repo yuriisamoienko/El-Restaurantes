@@ -7,6 +7,10 @@
 
 import Foundation
 
+/*
+ Allows store weak references as local variables, dictionary keys, array items etc.
+ */
+
 public class WeakContainer<T: AnyObject>: NSObject {
     
     // MARK: Public Properties

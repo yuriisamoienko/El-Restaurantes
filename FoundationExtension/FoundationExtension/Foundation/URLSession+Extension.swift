@@ -7,20 +7,21 @@
 
 import Foundation
 
-public typealias URLSessionCompletionHandler = (Data?, URLResponse?, Error?) -> Void
+/*
+ Simlify work with URLSession
+ */
 
 public extension URLSession {
     
-    var hostsWithPassword: [String] {
-        set {}
-        get {
-            return ["http://somehost.com/", "https://otherhost.com/"]
-        }
-    }
+    // MARK: Public Properties
+    
+    static var hostsWithPassword: [String] = ["http://somehost.com/", "https://otherhost.com/"]
     
     static var standart: URLSession {
         URLSession(configuration: .default)
     }
+    
+    // MARK: Public Functions
     
     func safeDataTask(with urlString: String, timeout: Double = 30, completionHandler: @escaping URLSessionCompletionHandler) -> URLSessionDataTask? {
         guard let url = URL(string: urlString) else {
@@ -32,7 +33,7 @@ public extension URLSession {
     
     func safeDataTask(with url: URL, timeout: Double = 30, completionHandler: @escaping URLSessionCompletionHandler) -> URLSessionDataTask {
         var request = URLRequest.init(url: url)
-        if url.absoluteString.hasOnePrefix(hostsWithPassword) {
+        if url.absoluteString.hasOnePrefix(Self.hostsWithPassword) {
             request.enableTestServerAuth()
         }
         request.timeoutInterval = timeout
@@ -55,9 +56,13 @@ public extension URLSession {
             task.resume()
         }
     }
+    
 }
 
-public extension URLRequest {
+public typealias URLSessionCompletionHandler = (Data?, URLResponse?, Error?) -> Void
+
+fileprivate extension URLRequest {
+    
     mutating func enableTestServerAuth() {
         let authStr = "user:passwprd"
         guard let authData = authStr.data(using: .ascii) else {
@@ -67,4 +72,5 @@ public extension URLRequest {
         let authValue = "Basic " + authData.base64EncodedString(options: .endLineWithCarriageReturn)
         setValue(authValue, forHTTPHeaderField: "Authorization")
     }
+    
 }

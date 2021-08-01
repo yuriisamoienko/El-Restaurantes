@@ -9,6 +9,8 @@ import Foundation
 
 public extension Array {
     
+    // MARK: Public Functions
+    
     func element(at index: Int) -> Element? {
         guard index >= 0,
               index < self.count

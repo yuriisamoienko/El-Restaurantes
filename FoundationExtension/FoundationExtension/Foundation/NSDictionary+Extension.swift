@@ -9,6 +9,8 @@ import Foundation
 
 public extension NSDictionary {
     
+    // MARK: Public Properties
+    
     func toDictionary() -> AnyDictionary {
         return self as Dictionary as AnyDictionary
     }

@@ -7,6 +7,13 @@
 
 import Foundation
 
+/*
+ General unification of localization.
+ 
+ example:
+ let text: String =  .localize.error
+ */
+
 public protocol Localizable {
     var localized: String { get }
 }
@@ -28,7 +35,7 @@ public extension String {
     // MARK: Public Functions
     
     static func localeCode() -> String {
-        var localeIdentifier = UserDefaults.standard.value(forKey: "AppLanguageUI") as? String ?? "" // "en_US"
+        var localeIdentifier = UserDefaults.standard.value(forKey: "AppLanguageUI") as? String ?? Locale.preferredLanguages.first ?? Locale.current.languageCode ?? ""
         if localeIdentifier == "auto" {
             localeIdentifier = ""
         }

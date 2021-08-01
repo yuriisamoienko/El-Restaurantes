@@ -9,12 +9,16 @@ import Foundation
 
 public extension NSError {
     
+    // MARK: Public Properties
+    
     var message: String? {
         get {
             let result = userInfo[NSLocalizedDescriptionKey] as? String
             return result
         }
     }
+    
+    // MARK: Constructors
     
     convenience init(code: Int = 0, message: String) {
         self.init(domain: "", code: code, userInfo: [NSLocalizedDescriptionKey: message])

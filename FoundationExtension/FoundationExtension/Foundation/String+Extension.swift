@@ -9,6 +9,9 @@ import Foundation
 
 public extension String {
     
+    // MARK: Public Functions
+    
+    // check if string has one of prefixes
     func hasOnePrefix(_ prefixes: [String]) -> Bool {
         var result = false
         for prefix in prefixes {

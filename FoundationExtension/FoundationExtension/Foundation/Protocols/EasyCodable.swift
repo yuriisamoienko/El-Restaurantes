@@ -7,20 +7,16 @@
 
 import Foundation
 
+/*
+ EasyCodable allows easily serialize & deserialize class & struct objects
+ */
+
 public protocol EasyCodable: Codable {
     associatedtype ClassType
     
+    // override it to decode class object from a redunat json
     init(from dict: AnyDictionary) throws
 }
-
-/*
-// decode class object from redunat json
-protocol RedutantJsonDecodable {
-//    associatedtype ClassType
-    init(from: AnyDictionary) throws
-    //func decode(with: AnyDictionary) -> Self
-}
- */
 
 extension Array: EasyCodable where Element: EasyCodable {
     
@@ -43,6 +39,7 @@ extension Array: EasyCodable where Element: EasyCodable {
     }
     
 }
+
 extension Dictionary: EasyCodable where Key: EasyCodable, Value: EasyCodable {}
 extension String: EasyCodable {}
 
@@ -57,7 +54,6 @@ public extension EasyCodable {
         do {
             let data = try encoder.encode(self)
             result = data
-//            print("encoded: \(String(decoding: data, as: UTF8.self))")
         } catch {
             printFuncLog("\(String(describing: type(of: self))) failed to encode with error: \(error.localizedDescription)")
             throw error
@@ -71,7 +67,6 @@ public extension EasyCodable {
             if let data = try self.encode(),
                let str = String(data: data, encoding: .utf8)
             {
-                //let test = Self.decode(from: data)
                 result = str
             }
         } catch {
@@ -80,6 +75,7 @@ public extension EasyCodable {
         return result
     }
     
+    // override it to decode class object from a redunat json
     init(from dict: AnyDictionary) throws {
         let data = try dict.toData()
         self = try Self(data: data)
