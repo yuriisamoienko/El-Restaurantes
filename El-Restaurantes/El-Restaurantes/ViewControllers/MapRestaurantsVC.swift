@@ -14,11 +14,21 @@ import FoundationExtension
  User can select a restaurant on map to open Details screen
  */
 
-final class MapRestaurantsVC: UIViewControllerBase, MKMapViewDelegate {
+protocol MapRestaurantsVCProtocol: UIViewController {
+    
+    func set(centerCoordinate: CLLocationCoordinate2D)
+    func onStartUpdating()
+    func onStopUpdating()
+    func set(annotations: [MKRestaurantAnnotation])
+}
+
+final class MapRestaurantsVC: UIViewControllerBase, MKMapViewDelegate, MapRestaurantsVCProtocol {
+    
+    // MARK: Public Properties
+    
+    public var presenter: MapRestaurantsPresenterProtocol?
     
     // MARK: Private Properties
-    
-    private var annotations: [MKRestaurantAnnotation] = []
     
     // UI
     private let mapView = MKMapView()
@@ -26,8 +36,6 @@ final class MapRestaurantsVC: UIViewControllerBase, MKMapViewDelegate {
     
     // MARK: Dependency injection
     
-    @Inject private var locationManager: LocationManagerProtocol
-    @Inject private var restaurantsRepository: RestaurantsRepositoryProtocol
     @Inject private var appRouter: RootAppRouterProtocol
 
     // MARK: Overriden functions
@@ -45,41 +53,52 @@ final class MapRestaurantsVC: UIViewControllerBase, MKMapViewDelegate {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        let didAppearOnce = self.didAppearOnce
         super.viewDidAppear(animated)
         navigationController?.hideNavigationBar()
-        if didAppearOnce == false {
-            locationManager.requestLocation(from: self) { _ in
-                
-                self.locationManager.getLocation { [unowned self] result in
-                    switch result {
-                    case .success(let location):
-                        printFuncLog("location: \(location)")
-                        self.mapView.centerCoordinate = location.coordinate
-                    
-                    case .failure(let error):
-                        printFuncLog(error: error)
-                    }
-                }
-            }
-        }
-        if didAppearOnce == false || annotations.isEmpty == true {
-            reloadData()
-        }
+        
+        presenter?.updateView(force: false)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
     }
     
-    deinit {
-        locationManager.remove(observer: self)
+    // MARK: MapRestaurantsVCProtocol
+    
+    func set(centerCoordinate: CLLocationCoordinate2D) {
+        self.mapView.centerCoordinate = centerCoordinate
+    }
+    
+    
+    func set(annotations: [MKRestaurantAnnotation]) {
+        DispatchQueue.main.async { [unowned self] in
+            self.mapView.removeAllAnotations()
+            self.mapView.addAnnotations(annotations)
+            self.mapView.fitAllAnnotations() //TODO fix console error: [VKDefault] Style Z is requested for an invisible rect
+        }
+    }
+    
+    func onStartUpdating() {
+        DispatchQueue.main.async {
+            self.reloadButton.disable() // so user can't run reload again during reloading
+            self.reloadButton.runRotateAnimation()
+        }
+    }
+    
+    func onStopUpdating() {
+        DispatchQueue.main.async {
+            self.reloadButton.layer.removeAllAnimations()
+            self.reloadButton.enable()
+        }
     }
 
     // MARK: MKMapViewDelegate
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        let entity = (view.annotation as? MKRestaurantAnnotation)?.entity
+        guard let entity = (view.annotation as? MKRestaurantAnnotation)?.entity else {
+            fatalMistake("can't get entity")
+            return
+        }
         self.appRouter.show(item: .restaurantFullInfo, sender: self, info: entity)
     }
 
@@ -113,56 +132,7 @@ final class MapRestaurantsVC: UIViewControllerBase, MKMapViewDelegate {
     
     @objc
     private func reloadData() {
-        DispatchQueue.main.async {
-            self.reloadButton.disable() // so user can't run reload again during reloading
-            self.reloadButton.runRotateAnimation()
-        }
-        restaurantsRepository.getAllrestaurants { [unowned self] (result: Result<[RestaurantEntity], Error>) in
-            DispatchQueue.main.async {
-                self.reloadButton.layer.removeAllAnimations()
-                self.reloadButton.enable()
-            }
-            switch result {
-            case .success(let list):
-                self.removeAnnotationsFromMap()
-                for item in list {
-                    let annotation = MKRestaurantAnnotation(entity: item)
-                    
-                    self.annotations.append(annotation)
-                }
-                self.putAnnotationsOnMap()
-                
-            case .failure(let error):
-                alert.showErrorAlert(error: error)
-            }
-        }
+        presenter?.updateView(force: true)
     }
-    
-    private func putAnnotationsOnMap() {
-        DispatchQueue.main.async {
-            self.mapView.addAnnotations(self.annotations)
-            self.mapView.fitAllAnnotations()
-        }
-    }
-    
-    private func removeAnnotationsFromMap() {
-        DispatchQueue.main.async {
-            self.mapView.removeAnnotations(self.annotations)
-        }
-    }
-}
 
-
-fileprivate extension UIView {
-    
-    @discardableResult
-    func runRotateAnimation() -> CABasicAnimation {
-        let rotation: CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
-        rotation.toValue = NSNumber(value: Double.pi * 2)
-        rotation.duration = 1
-        rotation.isCumulative = true
-        rotation.repeatCount = Float.greatestFiniteMagnitude
-        self.layer.add(rotation, forKey: "rotationAnimation")
-        return rotation
-    }
 }

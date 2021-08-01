@@ -56,8 +56,8 @@ final class MainTabBarController: UITabBarController {
     // MARK: Private Functions
     
     private func configureTabs() {
-        let mapVC = viewControllerFactory.createMapRestaurants() //TODO factory
-        let listVC = ListRestaurantsVC()
+        let mapVC = viewControllerFactory.createMapRestaurants()
+        let listVC = viewControllerFactory.createListRestaurants()
         
         addTab(mapVC) { tabBar in
             tabBar.image = .icons.mapFill

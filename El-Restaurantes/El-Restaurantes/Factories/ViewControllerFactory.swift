@@ -21,8 +21,10 @@ final class ViewControllerFactory: ViewControllerFactoryProtocol {
     // MARK: Public Functions
     
     func createMapRestaurants() -> UIViewController {
-        let result = MapRestaurantsVC()
-        return result
+        let vc = MapRestaurantsVC()
+        let presenter: MapRestaurantsPresenterProtocol = MapRestaurantsPresenter(view: vc)
+        vc.presenter = presenter
+        return vc
     }
     
     func createListRestaurants() -> UIViewController {

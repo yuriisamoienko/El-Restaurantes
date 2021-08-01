@@ -162,6 +162,17 @@ public extension UIView {
     }
     
     @discardableResult
+    func runRotateAnimation() -> CABasicAnimation {
+        let rotation: CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
+        rotation.toValue = NSNumber(value: Double.pi * 2)
+        rotation.duration = 1
+        rotation.isCumulative = true
+        rotation.repeatCount = Float.greatestFiniteMagnitude
+        self.layer.add(rotation, forKey: "rotationAnimation")
+        return rotation
+    }
+    
+    @discardableResult
     func setHeightConstraint(constant: CGFloat, relatedBy relation: NSLayoutConstraint.Relation = .equal) -> NSLayoutConstraint {
        return  heightAnchor.constraint(constant: constant, relatedBy: relation).activated()
     }
