@@ -23,4 +23,14 @@ public extension String {
         return result
     }
     
+    func substring(to index: Int) -> Self {
+        let result = (self as NSString).substring(to: index)
+        return result
+    }
+    
+    func substring(from index: Int) -> Self {
+        let result = (self as NSString).substring(from: index)
+        return result
+    }
+    
 }

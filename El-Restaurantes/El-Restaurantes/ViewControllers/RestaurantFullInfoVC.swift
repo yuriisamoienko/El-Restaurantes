@@ -59,7 +59,7 @@ final class RestaurantFullInfoVC: UIViewControllerBase {
         super.viewDidLoad()
         
         self.configureUI()
-        self.title = "Details" //TODO localize
+        self.title = .localize.details.capitalized
     }
     
     override func viewWillAppear(_ animated: Bool) {

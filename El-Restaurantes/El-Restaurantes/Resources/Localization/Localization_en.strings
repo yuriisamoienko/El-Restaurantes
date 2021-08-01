@@ -13,4 +13,5 @@
 "k_enable_location_service" = "Please enable location service";
 "k_no" = "no";
 "k_yes" = "yes";
-
+"k_details" = "details";
+"k_pull_to_refresh" = "pull to refresh";

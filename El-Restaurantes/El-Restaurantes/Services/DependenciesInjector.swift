@@ -24,8 +24,11 @@ open class DependenciesInjector: NSObject, DependenciesInjectorProtocol {
         let restaurantsRepository: RestaurantsRepositoryProtocol = RestaurantsRepository(remoteRepository: RestaurantsRepositoryRemote())
         add({ restaurantsRepository as RestaurantsRepositoryProtocol })
         
+        let viewControllerFactory: ViewControllerFactoryProtocol = ViewControllerFactory()
+        add({ viewControllerFactory as ViewControllerFactoryProtocol })
         
         let appRouter: RootAppRouterProtocol = RootAppRouter()
         add({ appRouter as RootAppRouterProtocol })
+        
     }
 }

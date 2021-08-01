@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FoundationExtension
 
 /*
  Main bottom tab bar
@@ -39,6 +40,9 @@ final class MainTabBarController: UITabBarController {
             viewControllers = tabViewControllers
         }
     }
+    
+    // MARK: Dependency injection
+    @Inject private var viewControllerFactory: ViewControllerFactoryProtocol
 
     // MARK: Overriden functions
     
@@ -52,7 +56,7 @@ final class MainTabBarController: UITabBarController {
     // MARK: Private Functions
     
     private func configureTabs() {
-        let mapVC = MapRestaurantsVC() //TODO factory
+        let mapVC = viewControllerFactory.createMapRestaurants() //TODO factory
         let listVC = ListRestaurantsVC()
         
         addTab(mapVC) { tabBar in

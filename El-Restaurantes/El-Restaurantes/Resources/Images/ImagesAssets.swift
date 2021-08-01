@@ -17,6 +17,9 @@ extension UIImage {
         var playlistAddCheck: UIImage? {
             UIImage(named: "playlist.add.check")
         }
+        var arrowCounterclockwiseCircleFill: UIImage? {
+            UIImage(named: "arrow.counterclockwise.circle.fill")
+        }
     }
     
     // MARK: Public Properties

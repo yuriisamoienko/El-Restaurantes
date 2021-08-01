@@ -36,6 +36,7 @@ public extension String {
     
     static func localeCode() -> String {
         var localeIdentifier = UserDefaults.standard.value(forKey: "AppLanguageUI") as? String ?? Locale.preferredLanguages.first ?? Locale.current.languageCode ?? ""
+        localeIdentifier = localeIdentifier.substring(to: 2)
         if localeIdentifier == "auto" {
             localeIdentifier = ""
         }

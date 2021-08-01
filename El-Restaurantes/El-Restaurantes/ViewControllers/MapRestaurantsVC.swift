@@ -18,8 +18,11 @@ final class MapRestaurantsVC: UIViewControllerBase, MKMapViewDelegate {
     
     // MARK: Private Properties
     
-    private let mapView = MKMapView()
     private var annotations: [MKRestaurantAnnotation] = []
+    
+    // UI
+    private let mapView = MKMapView()
+    private let reloadButton = UIButton()
     
     // MARK: Dependency injection
     
@@ -34,6 +37,7 @@ final class MapRestaurantsVC: UIViewControllerBase, MKMapViewDelegate {
 
         configureView()
         configureMapView()
+        configureReloadButton()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -94,8 +98,30 @@ final class MapRestaurantsVC: UIViewControllerBase, MKMapViewDelegate {
         mapView.pinEdges(to: view)
     }
     
+    private func configureReloadButton() {
+        reloadButton.setBackgroundImage(.icons.arrowCounterclockwiseCircleFill, for: .normal)
+        reloadButton.addTarget(self, action: #selector(reloadData), for: .touchUpInside)
+        reloadButton.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(reloadButton)
+        reloadButton.setWidthConstraint(constant: 50)
+        reloadButton.setHeightConstraint(constant: 50)
+        [
+            reloadButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10),
+            reloadButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -40),
+        ].activate()
+    }
+    
+    @objc
     private func reloadData() {
+        DispatchQueue.main.async {
+            self.reloadButton.disable() // so user can't run reload again during reloading
+            self.reloadButton.runRotateAnimation()
+        }
         restaurantsRepository.getAllrestaurants { [unowned self] (result: Result<[RestaurantEntity], Error>) in
+            DispatchQueue.main.async {
+                self.reloadButton.layer.removeAllAnimations()
+                self.reloadButton.enable()
+            }
             switch result {
             case .success(let list):
                 self.removeAnnotationsFromMap()
@@ -113,14 +139,30 @@ final class MapRestaurantsVC: UIViewControllerBase, MKMapViewDelegate {
     }
     
     private func putAnnotationsOnMap() {
-        mapView.addAnnotations(annotations)
         DispatchQueue.main.async {
+            self.mapView.addAnnotations(self.annotations)
             self.mapView.fitAllAnnotations()
         }
     }
     
     private func removeAnnotationsFromMap() {
-        mapView.removeAnnotations(annotations)
+        DispatchQueue.main.async {
+            self.mapView.removeAnnotations(self.annotations)
+        }
     }
 }
 
+
+fileprivate extension UIView {
+    
+    @discardableResult
+    func runRotateAnimation() -> CABasicAnimation {
+        let rotation: CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
+        rotation.toValue = NSNumber(value: Double.pi * 2)
+        rotation.duration = 1
+        rotation.isCumulative = true
+        rotation.repeatCount = Float.greatestFiniteMagnitude
+        self.layer.add(rotation, forKey: "rotationAnimation")
+        return rotation
+    }
+}

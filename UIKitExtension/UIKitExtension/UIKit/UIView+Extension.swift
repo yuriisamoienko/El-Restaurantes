@@ -179,6 +179,8 @@ public extension UIView {
         isHidden = false
     }
     
+    // MARK: Constructors
+    
     convenience init(heightConstraintConstant value: CGFloat, relatedBy relation: NSLayoutConstraint.Relation = .equal) {
         self.init()
         setHeightConstraint(constant: value, relatedBy: relation)

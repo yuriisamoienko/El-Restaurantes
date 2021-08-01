@@ -30,12 +30,9 @@ public extension UIViewController {
         
         public func showQuestionAlert(title: String?, message: String?, closeCallback: @escaping (Bool) -> Void) {
             let alertController = UIAlertController.init(title: title, message: message, preferredStyle: .alert)
-            //TODO translate 'No'
             let noAction = UIAlertAction.init(title: .localize.no.capitalized, style: .default) { (_) in
                 closeCallback(false)
             }
-
-            //TODO translate 'Yes'
             let yesAction = UIAlertAction.init(title: .localize.yes.capitalized, style: .default) { (_) in
                 closeCallback(true)
             }

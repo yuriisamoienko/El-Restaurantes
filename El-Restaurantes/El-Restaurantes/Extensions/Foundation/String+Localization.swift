@@ -31,6 +31,11 @@ extension String.Localizations {
     var pleaseEnableLocationService: String {
         "k_enable_location_service".localized
     }
-    
+    var details: String {
+        "k_details".localized
+    }
+    var pullToRefresh: String {
+        "k_pull_to_refresh".localized
+    }
     
 }

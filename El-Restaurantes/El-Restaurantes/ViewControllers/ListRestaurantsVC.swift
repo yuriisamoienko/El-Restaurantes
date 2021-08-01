@@ -135,10 +135,28 @@ final class ListRestaurantsVC: UITableViewControllerBase {
         navigationBarVisibility = .hide
         
         tableView.registerCellForReuse(ListRestaurantTableViewCell.self)
+        
+        let refreshControl = UIRefreshControl()
+        refreshControl.attributedTitle = NSAttributedString(string: .localize.pullToRefresh.capitalized)
+        refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
+        tableView.addSubview(refreshControl) // not required when using UITableViewController
+        self.refreshControl = refreshControl
+    }
+    
+    @objc
+    private func refresh(_ sender: AnyObject) {
+        // it feels not working without delay
+        debounce(queue: .background, delay: 1.0) { [unowned self] in
+            self.reloadData()
+        }
+        
     }
     
     private func reloadData() {
         restaurantsRepository.getAllrestaurants { [unowned self] (result: Result<[RestaurantEntity], Error>) in
+            DispatchQueue.main.async {
+                self.refreshControl?.endRefreshing()
+            }
             switch result {
             case .success(let list):
                 self.dataList = list

@@ -13,3 +13,5 @@
 "k_enable_location_service" = "Пожалуйста включите геолокацию";
 "k_no" = "нет";
 "k_yes" = "да";
+"k_details" = "описание";
+"k_pull_to_refresh" = "потяните чтобы обновить";
