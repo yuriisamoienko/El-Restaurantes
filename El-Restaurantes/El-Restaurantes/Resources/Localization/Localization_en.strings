@@ -1,0 +1,11 @@
+/* 
+  Localization.strings
+  El-Restaurantes
+
+  Created by Yurii Samoienko on 30.07.2021.
+  
+*/
+
+"k_map" = "map";
+"k_list" = "list";
+"k_error" = "error";
