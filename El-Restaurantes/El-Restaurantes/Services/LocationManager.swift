@@ -33,7 +33,6 @@ class LocationManager: NSObject, LocationManagerProtocol, CLLocationManagerDeleg
     private var getLocationCallback: ((CLLocationResult) -> Void)?
     
     private var observers: [WeakContainer<AnyObject>: (CLLocationResult) -> Void] = [:] // they will observe real time location updates
-    private let serialQueue = DispatchQueue(label: "LocationManagerDispatchQueue", attributes: .concurrent)
     private var isUpdatingLocation = false
     
     override init() {
@@ -44,45 +43,39 @@ class LocationManager: NSObject, LocationManagerProtocol, CLLocationManagerDeleg
     
     // MARK: LocationManagerProtocol
     
-    func remove(observer: AnyObject) {//return;
-       // performOnSerialQueue { [unowned self] in
-            for (container, _) in self.observers {
-                guard let content = container.content else {
-                    observers.removeValue(forKey: container)
-                    continue
-                }
-                guard content === observer else {
-                    continue
-                }
+    func remove(observer: AnyObject) {
+        for (container, _) in self.observers {
+            guard let content = container.content else {
                 observers.removeValue(forKey: container)
-                break
+                continue
             }
-            if observers.keys.isEmpty == true,
-               getLocationCallback == nil
-            {
-                self.stopMonitorLocation()
+            guard content === observer else {
+                continue
             }
-        //}
+            observers.removeValue(forKey: container)
+            break
+        }
+        if observers.keys.isEmpty == true,
+           getLocationCallback == nil
+        {
+            self.stopMonitorLocation()
+        }
     }
     
-    func add(observer: AnyObject, callback: @escaping (CLLocationResult) -> Void) {//return;
-//        remove(observer: observer)
-        
-//        performOnSerialQueue { [unowned self] in
-            for (container, _) in self.observers {
-                guard let content = container.content else {
-                    observers.removeValue(forKey: container)
-                    continue
-                }
-                if content === observer {
-                    return
-                }
+    func add(observer: AnyObject, callback: @escaping (CLLocationResult) -> Void) {
+        for (container, _) in self.observers {
+            guard let content = container.content else {
+                observers.removeValue(forKey: container)
+                continue
             }
-            
-            let container = WeakContainer(observer)
-            self.observers[container] = callback
-            self.startMonitorLocation()
-        //}
+            if content === observer {
+                return
+            }
+        }
+        
+        let container = WeakContainer(observer)
+        self.observers[container] = callback
+        self.startMonitorLocation()
     }
     
     func isLocationServiceAuthorized() -> Bool {
@@ -148,7 +141,6 @@ class LocationManager: NSObject, LocationManagerProtocol, CLLocationManagerDeleg
         } else {
             getLocationCallback = callback
             startMonitorLocation()
-            //locationManager.requestLocation()  //requestLocation()
         }
     }
     
@@ -180,12 +172,6 @@ class LocationManager: NSObject, LocationManagerProtocol, CLLocationManagerDeleg
     
     // MARK: Private Functions
     
-    private func performOnSerialQueue(_ closure: @escaping () -> Void) {
-        serialQueue.sync(flags: .barrier) {
-            closure()
-        }
-    }
-    
     private func callObservers(with result: CLLocationResult) {
         getLocationCallback?(result)
         getLocationCallback = nil
@@ -194,10 +180,8 @@ class LocationManager: NSObject, LocationManagerProtocol, CLLocationManagerDeleg
             stopMonitorLocation()
             return
         }
-//        performOnSerialQueue { [unowned self] in
-            for (_, observer) in self.observers {
-                observer(result)
-            }
-//        }
+        for (_, observer) in self.observers {
+            observer(result)
+        }
     }
 }

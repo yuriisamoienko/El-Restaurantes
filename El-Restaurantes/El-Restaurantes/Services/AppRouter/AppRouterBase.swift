@@ -9,8 +9,12 @@ import Foundation
 import UIKit
 import FoundationExtension
 
+/*
+ Base app route.
+ Inherit any app router from this class.
+ You must overwrite 'showImplementation(item..)' func!!
+ */
 open class AppRouterBase: NSObject, AppRouterProtocol, AppRouterImplementationProtocol {
-    
     
     lazy var childRouters = [AppRouterProtocol]()
 
