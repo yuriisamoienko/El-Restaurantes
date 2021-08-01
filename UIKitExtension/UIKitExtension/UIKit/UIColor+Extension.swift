@@ -9,6 +9,8 @@ import UIKit
 
 public extension UIColor {
     
+    // MARK: Public Properties
+    
     static var systemBackgroundColor: UIColor {
         let result: UIColor
         if #available(iOS 13.0, *) {

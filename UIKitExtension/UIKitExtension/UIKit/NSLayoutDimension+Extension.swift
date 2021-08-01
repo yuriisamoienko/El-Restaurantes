@@ -9,6 +9,8 @@ import UIKit
 
 public extension NSLayoutDimension {
     
+    // MARK: Public Functions
+    
     func constraint(constant: CGFloat, relatedBy relation: NSLayoutConstraint.Relation = .equal) -> NSLayoutConstraint {
         let constraint: NSLayoutConstraint
         switch relation {

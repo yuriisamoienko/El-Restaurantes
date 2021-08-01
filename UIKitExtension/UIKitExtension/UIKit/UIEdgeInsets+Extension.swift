@@ -9,6 +9,8 @@ import UIKit
 
 public extension UIEdgeInsets {
     
+    // MARK: Public Functions
+    
     func vertical() -> CGFloat {
         let result = top + bottom
         return result
@@ -22,6 +24,8 @@ public extension UIEdgeInsets {
     static func make(top: CGFloat = 0, left: CGFloat = 0, bottom: CGFloat = 0, right: CGFloat = 0) -> Self  {
         return UIEdgeInsets(top: top, left: left, bottom: bottom, right: right)
     }
+    
+    // MARK: Init
     
     init(inset: CGFloat) {
         self.init(top: inset, left: inset, bottom: inset, right: inset)

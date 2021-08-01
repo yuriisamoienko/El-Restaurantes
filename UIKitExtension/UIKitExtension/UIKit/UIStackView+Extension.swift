@@ -9,10 +9,14 @@ import UIKit
 
 public extension UIStackView {
     
+    // MARK: Init
+    
     convenience init(axis: NSLayoutConstraint.Axis) {
         self.init()
         self.axis = axis
     }
+    
+    // MARK: Public Functions
     
     func addArrangedSubviews(_ views: UIView?...) {
         let items: [UIView?] = views

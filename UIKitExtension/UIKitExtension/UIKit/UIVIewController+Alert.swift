@@ -8,6 +8,10 @@
 import UIKit
 import FoundationExtension
 
+/*
+ General way to show alerts without code dublication
+ */
+
 public extension UIViewController {
     
     // MARK: Types
@@ -15,6 +19,7 @@ public extension UIViewController {
     class UIAlertMessenger {
         
         // MARK: Private Properties
+        
         private let viewController: UIViewController
         
         // MARK: Public Functions

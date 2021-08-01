@@ -27,6 +27,7 @@ public enum NavigationBarVisibility {
 
 public extension UINavigationBarDisplayer {
     
+    // call it in 'viewWIllAppear'
     func showNavigationControllerBarIfNeeded() {
         switch navigationBarVisibility {
         case .hide:

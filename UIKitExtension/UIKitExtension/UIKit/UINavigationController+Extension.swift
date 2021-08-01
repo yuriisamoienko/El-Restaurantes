@@ -9,6 +9,9 @@ import UIKit
 
 public extension UINavigationController {
 
+    // MARK: Public Functions
+    
+    // extended 'pushViewController' with completion closure. 'completion' is called when pushing is done
     func pushViewController(_ viewController: UIViewController, animated: Bool, completion: @escaping () -> Void) {
         if viewControllers.contains(viewController) {
             //app will crash if ut pushes the same view controller twice
@@ -27,6 +30,7 @@ public extension UINavigationController {
         }
     }
     
+    // extended 'popToViewController' with completion closure. 'completion' is called when poping is done
     func popToViewController(_ viewController: UIViewController, animated: Bool, completion: @escaping () -> Void) {
         DispatchQueue.main.async { [self] in
             self.popToViewController(viewController, animated: animated)

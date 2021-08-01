@@ -9,6 +9,8 @@ import UIKit
 
 public extension CGRect {
     
+    // MARK: Public Properties
+    
     var center: CGPoint {
         var result = self.origin
         result.x += self.size.width/2

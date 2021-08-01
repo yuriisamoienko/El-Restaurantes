@@ -9,6 +9,8 @@ import UIKit
 
 public extension UILabel {
     
+    // MARK: Public Functions
+    
     func textPixelWidth() -> CGFloat {
         let result = intrinsicContentSize.width
         return result

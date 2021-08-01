@@ -7,10 +7,10 @@
 
 import UIKit
 
-extension UIView: UIAnchorsOwnerProtocol {}
-extension UILayoutGuide: UIAnchorsOwnerProtocol {}
 
 public extension UIView {
+    
+    // MARK: Public Properties
     
     var frameX: CGFloat {
         get {
@@ -84,6 +84,40 @@ public extension UIView {
         return result
     }
     
+    var cornerRadius: CGFloat {
+        set {
+            layer.cornerRadius = newValue
+            if newValue != 0 {
+                clipsToBounds = true // without it cornerRadius doens't work
+            }
+        }
+        get {
+            return layer.cornerRadius
+        }
+    }
+    
+    var borderWidth: CGFloat {
+        set {
+            layer.borderWidth = newValue
+        }
+        get {
+            return layer.borderWidth
+        }
+    }
+    
+    var borderColor: UIColor? {
+        set {
+            guard let uiColor = newValue else { return }
+            layer.borderColor = uiColor.cgColor
+        }
+        get {
+            guard let color = layer.borderColor else { return nil }
+            return UIColor(cgColor: color)
+        }
+    }
+    
+    // MARK: Public Functions
+    
     func fillParentFrame() {
         guard let superview = self.superview else { return }
         self.frame = superview.bounds
@@ -127,21 +161,6 @@ public extension UIView {
         frameCenter = superview.bounds.center
     }
     
-   /* func pinEdges(to view: UIView, spacingHorizontal: CGFloat = 0, spacingVertical: CGFloat = 0) {
-        pinEdges(to: view, leftSpacing: spacingHorizontal/2, topSpacing: spacingVertical/2, rightSpacing: spacingHorizontal/2, bottomSpacing: spacingVertical/2)
-    }
-    
-    func pinEdges(to view: UIView, leftSpacing: CGFloat = 0, topSpacing: CGFloat = 0, rightSpacing: CGFloat = 0, bottomSpacing: CGFloat = 0) {
-        self.translatesAutoresizingMaskIntoConstraints = false
-        
-        [
-            self.topAnchor.constraint(equalTo: view.topAnchor, constant: topSpacing),
-            self.leftAnchor.constraint(equalTo: view.leftAnchor, constant: leftSpacing),
-            self.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -bottomSpacing),
-            self.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -rightSpacing),
-        ].activate()
-    }*/
-    
     @discardableResult
     func setHeightConstraint(constant: CGFloat, relatedBy relation: NSLayoutConstraint.Relation = .equal) -> NSLayoutConstraint {
        return  heightAnchor.constraint(constant: constant, relatedBy: relation).activated()
@@ -165,39 +184,6 @@ public extension UIView {
         setHeightConstraint(constant: value, relatedBy: relation)
     }
     
-    // MARK: - IBInspectable
-    
-    @IBInspectable var cornerRadius: CGFloat {
-        set {
-            layer.cornerRadius = newValue
-            if newValue != 0 {
-                clipsToBounds = true // without it cornerRadius doens't work
-            }
-        }
-        get {
-            return layer.cornerRadius
-        }
-    }
-    
-    @IBInspectable var borderWidth: CGFloat {
-        set {
-            layer.borderWidth = newValue
-        }
-        get {
-            return layer.borderWidth
-        }
-    }
-    
-    @IBInspectable var borderColor: UIColor? {
-        set {
-            guard let uiColor = newValue else { return }
-            layer.borderColor = uiColor.cgColor
-        }
-        get {
-            guard let color = layer.borderColor else { return nil }
-            return UIColor(cgColor: color)
-        }
-    }
 }
 
 

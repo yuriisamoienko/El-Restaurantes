@@ -9,6 +9,8 @@ import UIKit
 
 public extension NSLayoutConstraint {
     
+    // MARK: Public Functions
+    
     func activate() {
         isActive = true
     }
@@ -21,6 +23,8 @@ public extension NSLayoutConstraint {
 }
 
 public extension Array where Element: NSLayoutConstraint {
+    
+    // MARK: Public Functions
     
     func activate() {
         forEach {
