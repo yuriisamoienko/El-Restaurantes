@@ -25,6 +25,8 @@
 		5A9BE56126B71C260081FF1C /* UIKitExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A9BE55E26B71C260081FF1C /* UIKitExtension.framework */; };
 		5A9BE56226B71C260081FF1C /* UIKitExtension.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5A9BE55E26B71C260081FF1C /* UIKitExtension.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5A9BE56826B71C6D0081FF1C /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9BE56726B71C6D0081FF1C /* UIColor+Extension.swift */; };
+		5A9BE56B26B724630081FF1C /* String+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9BE56A26B724630081FF1C /* String+Localization.swift */; };
+		5A9BE57526B728190081FF1C /* RestaurantsRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9BE57426B728190081FF1C /* RestaurantsRepositoryProtocol.swift */; };
 		5AD72AD426B15F9B0072CD9C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD72AD326B15F9B0072CD9C /* AppDelegate.swift */; };
 		5AD72AD626B15F9B0072CD9C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD72AD526B15F9B0072CD9C /* SceneDelegate.swift */; };
 		5AD72AD826B15F9B0072CD9C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD72AD726B15F9B0072CD9C /* ViewController.swift */; };
@@ -37,9 +39,7 @@
 		5AD72AFA26B1D82B0072CD9C /* UITableViewControllerBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD72AF926B1D82B0072CD9C /* UITableViewControllerBase.swift */; };
 		5AD72AFC26B1DB030072CD9C /* ImagesAssets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD72AFB26B1DB030072CD9C /* ImagesAssets.swift */; };
 		5AD72B1226B1E62D0072CD9C /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD72B1126B1E62D0072CD9C /* LocationManager.swift */; };
-		5AD72B1A26B26CA60072CD9C /* WeakContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD72B1926B26CA60072CD9C /* WeakContainer.swift */; };
 		5AD72B1C26B270F40072CD9C /* DependenciesInjector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD72B1B26B270F40072CD9C /* DependenciesInjector.swift */; };
-		5AD72B2126B272D50072CD9C /* DependenciesInjection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD72B2026B272D50072CD9C /* DependenciesInjection.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -74,6 +74,8 @@
 		5A9BE55D26B71C260081FF1C /* FoundationExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FoundationExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A9BE55E26B71C260081FF1C /* UIKitExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = UIKitExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A9BE56726B71C6D0081FF1C /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		5A9BE56A26B724630081FF1C /* String+Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Localization.swift"; sourceTree = "<group>"; };
+		5A9BE57426B728190081FF1C /* RestaurantsRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsRepositoryProtocol.swift; sourceTree = "<group>"; };
 		5AD72AD026B15F9B0072CD9C /* El-Restaurantes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "El-Restaurantes.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AD72AD326B15F9B0072CD9C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5AD72AD526B15F9B0072CD9C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -88,9 +90,7 @@
 		5AD72AF926B1D82B0072CD9C /* UITableViewControllerBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewControllerBase.swift; sourceTree = "<group>"; };
 		5AD72AFB26B1DB030072CD9C /* ImagesAssets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesAssets.swift; sourceTree = "<group>"; };
 		5AD72B1126B1E62D0072CD9C /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
-		5AD72B1926B26CA60072CD9C /* WeakContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakContainer.swift; sourceTree = "<group>"; };
 		5AD72B1B26B270F40072CD9C /* DependenciesInjector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependenciesInjector.swift; sourceTree = "<group>"; };
-		5AD72B2026B272D50072CD9C /* DependenciesInjection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependenciesInjection.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,10 +135,10 @@
 		5A9BE4A826B48B3B0081FF1C /* Repository */ = {
 			isa = PBXGroup;
 			children = (
-				5A9BE4A926B48B5E0081FF1C /* RestaurantsRepository.swift */,
-				5A9BE4AB26B48B7E0081FF1C /* RestaurantsRepositoryRemote.swift */,
 				5A9BE4AD26B48C910081FF1C /* ApiMethods.swift */,
-				5A9BE4AF26B493AE0081FF1C /* RestaurantEntity.swift */,
+				5A9BE4A926B48B5E0081FF1C /* RestaurantsRepository.swift */,
+				5A9BE57426B728190081FF1C /* RestaurantsRepositoryProtocol.swift */,
+				5A9BE4AB26B48B7E0081FF1C /* RestaurantsRepositoryRemote.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -173,6 +173,7 @@
 		5A9BE56526B71C600081FF1C /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				5A9BE56926B724560081FF1C /* Foundation */,
 				5A9BE56626B71C620081FF1C /* UIKit */,
 			);
 			path = Extensions;
@@ -184,6 +185,14 @@
 				5A9BE56726B71C6D0081FF1C /* UIColor+Extension.swift */,
 			);
 			path = UIKit;
+			sourceTree = "<group>";
+		};
+		5A9BE56926B724560081FF1C /* Foundation */ = {
+			isa = PBXGroup;
+			children = (
+				5A9BE56A26B724630081FF1C /* String+Localization.swift */,
+			);
+			path = Foundation;
 			sourceTree = "<group>";
 		};
 		5AD72AC726B15F9B0072CD9C = {
@@ -206,10 +215,10 @@
 		5AD72AD226B15F9B0072CD9C /* El-Restaurantes */ = {
 			isa = PBXGroup;
 			children = (
-				5A9BE56526B71C600081FF1C /* Extensions */,
 				5AD72AD326B15F9B0072CD9C /* AppDelegate.swift */,
 				5AD72AE826B1D49C0072CD9C /* BaseClasses */,
 				5AD72AEE26B1D5280072CD9C /* Entities */,
+				5A9BE56526B71C600081FF1C /* Extensions */,
 				5AD72AE126B15F9C0072CD9C /* Info.plist */,
 				5AD72ADE26B15F9C0072CD9C /* LaunchScreen.storyboard */,
 				5AD72AED26B1D51D0072CD9C /* Presenters */,
@@ -265,6 +274,7 @@
 		5AD72AEE26B1D5280072CD9C /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				5A9BE4AF26B493AE0081FF1C /* RestaurantEntity.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -291,8 +301,6 @@
 		5AD72B1826B26C990072CD9C /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
-				5AD72B1926B26CA60072CD9C /* WeakContainer.swift */,
-				5AD72B2026B272D50072CD9C /* DependenciesInjection.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -370,6 +378,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5AD72B1C26B270F40072CD9C /* DependenciesInjector.swift in Sources */,
+				5A9BE56B26B724630081FF1C /* String+Localization.swift in Sources */,
 				5AD72AF626B1D7E90072CD9C /* MapRestaurantsVC.swift in Sources */,
 				5A9BE4E326B6910E0081FF1C /* RestaurantFullInfoVC.swift in Sources */,
 				5A9BE4A326B488340081FF1C /* ListRestaurantTableViewCell.swift in Sources */,
@@ -377,15 +386,14 @@
 				5A9BE4E626B694910081FF1C /* AppRouterProtocol.swift in Sources */,
 				5AD72AFA26B1D82B0072CD9C /* UITableViewControllerBase.swift in Sources */,
 				5AD72B1226B1E62D0072CD9C /* LocationManager.swift in Sources */,
+				5A9BE57526B728190081FF1C /* RestaurantsRepositoryProtocol.swift in Sources */,
 				5A9BE4E826B695810081FF1C /* AppRouterBase.swift in Sources */,
 				5A9BE56826B71C6D0081FF1C /* UIColor+Extension.swift in Sources */,
 				5AD72AF226B1D7170072CD9C /* UIViewControllerBase.swift in Sources */,
 				5AD72AFC26B1DB030072CD9C /* ImagesAssets.swift in Sources */,
-				5AD72B1A26B26CA60072CD9C /* WeakContainer.swift in Sources */,
 				5A9BE4DA26B5AD1C0081FF1C /* UITableViewCellBase.swift in Sources */,
 				5AD72AF426B1D77D0072CD9C /* MainTabBarController.swift in Sources */,
 				5A9BE4AE26B48C910081FF1C /* ApiMethods.swift in Sources */,
-				5AD72B2126B272D50072CD9C /* DependenciesInjection.swift in Sources */,
 				5AD72AD426B15F9B0072CD9C /* AppDelegate.swift in Sources */,
 				5AD72AD626B15F9B0072CD9C /* SceneDelegate.swift in Sources */,
 				5A9BE4EC26B698D30081FF1C /* RootAppRouter.swift in Sources */,

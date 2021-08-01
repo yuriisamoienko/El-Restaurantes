@@ -21,6 +21,8 @@
 		5A9BE54C26B71A650081FF1C /* URLSession+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9BE54126B71A650081FF1C /* URLSession+Extension.swift */; };
 		5A9BE55226B71B570081FF1C /* Debuging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9BE55026B71B570081FF1C /* Debuging.swift */; };
 		5A9BE55326B71B570081FF1C /* Loggings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9BE55126B71B570081FF1C /* Loggings.swift */; };
+		5A9BE57026B724E90081FF1C /* DependenciesInjection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9BE56E26B724E90081FF1C /* DependenciesInjection.swift */; };
+		5A9BE57126B724E90081FF1C /* WeakContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9BE56F26B724E90081FF1C /* WeakContainer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +42,8 @@
 		5A9BE54126B71A650081FF1C /* URLSession+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URLSession+Extension.swift"; sourceTree = "<group>"; };
 		5A9BE55026B71B570081FF1C /* Debuging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Debuging.swift; sourceTree = "<group>"; };
 		5A9BE55126B71B570081FF1C /* Loggings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Loggings.swift; sourceTree = "<group>"; };
+		5A9BE56E26B724E90081FF1C /* DependenciesInjection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DependenciesInjection.swift; sourceTree = "<group>"; };
+		5A9BE56F26B724E90081FF1C /* WeakContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeakContainer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +76,7 @@
 		5A9BE4FF26B7199F0081FF1C /* FoundationExtension */ = {
 			isa = PBXGroup;
 			children = (
+				5A9BE56C26B724BF0081FF1C /* BaseClasses */,
 				5A9BE54F26B71B570081FF1C /* Functions */,
 				5A9BE53626B71A650081FF1C /* Foundation */,
 				5A9BE53426B71A650081FF1C /* Other */,
@@ -121,6 +126,15 @@
 				5A9BE55126B71B570081FF1C /* Loggings.swift */,
 			);
 			path = Functions;
+			sourceTree = "<group>";
+		};
+		5A9BE56C26B724BF0081FF1C /* BaseClasses */ = {
+			isa = PBXGroup;
+			children = (
+				5A9BE56E26B724E90081FF1C /* DependenciesInjection.swift */,
+				5A9BE56F26B724E90081FF1C /* WeakContainer.swift */,
+			);
+			path = BaseClasses;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -209,8 +223,10 @@
 				5A9BE54326B71A650081FF1C /* Array+Extension.swift in Sources */,
 				5A9BE54426B71A650081FF1C /* Dictionary+Extension.swift in Sources */,
 				5A9BE54726B71A650081FF1C /* NSError+Extension.swift in Sources */,
+				5A9BE57026B724E90081FF1C /* DependenciesInjection.swift in Sources */,
 				5A9BE54826B71A650081FF1C /* NSObject+Extension.swift in Sources */,
 				5A9BE55326B71B570081FF1C /* Loggings.swift in Sources */,
+				5A9BE57126B724E90081FF1C /* WeakContainer.swift in Sources */,
 				5A9BE54B26B71A650081FF1C /* String+Localization.swift in Sources */,
 				5A9BE55226B71B570081FF1C /* Debuging.swift in Sources */,
 				5A9BE54C26B71A650081FF1C /* URLSession+Extension.swift in Sources */,

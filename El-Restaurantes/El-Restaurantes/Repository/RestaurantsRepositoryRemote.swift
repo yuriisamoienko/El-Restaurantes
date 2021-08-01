@@ -5,15 +5,20 @@
 //  Created by Yurii Samoienko on 30.07.2021.
 //
 
+import FoundationExtension
 import UIKit
 
 class RestaurantsRepositoryRemote: NSObject, RestaurantsRepositoryProtocol {
 
     // MARK: RestaurantsRepositoryProtocol
     
+    // get list of all restaurants
     func getAllrestaurants(completion: @escaping (Result<[RestaurantEntity], Error>) -> Void) {
         let url = ApiMethods.shared.getAllRestaurants
-        URLSession.runDefaultDataTask(with: url) { data, response, error in
+        printFuncLog("url = \(url)")
+        
+        // run request
+        URLSession.standart.runDefaultDataTask(with: url) { data, response, error in
             let onFailure: (Error) -> Void = { error in
                 completion(.failure(error))
             }
@@ -30,7 +35,7 @@ class RestaurantsRepositoryRemote: NSObject, RestaurantsRepositoryProtocol {
                 return
             }
             do {
-//                let response = [String: Any].dec
+                // validate response
                 guard let json = try data.decodeToAny() as? [String: Any] else {
                     onFailureMessage("data is not a json")
                     return
@@ -46,6 +51,7 @@ class RestaurantsRepositoryRemote: NSObject, RestaurantsRepositoryProtocol {
                 let restaurantJsonArray: [[String: Any]] = restaurants.map {
                     $0["restaurant"] as? [String: Any] ?? [String: Any]()
                 }
+                // decode result
                 let result = try [RestaurantEntity].decode(from: restaurantJsonArray)
                 completion(.success(result))
             } catch {
@@ -53,4 +59,5 @@ class RestaurantsRepositoryRemote: NSObject, RestaurantsRepositoryProtocol {
             }
         }
     }
+    
 }

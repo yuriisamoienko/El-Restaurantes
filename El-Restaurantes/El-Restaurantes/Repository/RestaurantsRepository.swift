@@ -7,14 +7,15 @@
 
 import UIKit
 
-protocol RestaurantsRepositoryProtocol: AnyObject {
-    
-    func getAllrestaurants(completion: @escaping (Result<[RestaurantEntity], Error>) -> Void)
-}
+/*
+ Implementation of Respository for fetching restaurants data.
+ It handles both remote and local (future feature) repositories
+ */
 
 class RestaurantsRepository: NSObject, RestaurantsRepositoryProtocol {
     
     // MARK: Private Properties
+    
     private let remoteRepository: RestaurantsRepositoryProtocol
     
     // MARK: Public Functions
@@ -27,6 +28,7 @@ class RestaurantsRepository: NSObject, RestaurantsRepositoryProtocol {
     // MARK: RestaurantsRepositoryProtocol
     
     func getAllrestaurants(completion: @escaping (Result<[RestaurantEntity], Error>) -> Void) {
+        // try get from remote repository
         remoteRepository.getAllrestaurants(completion: completion)
     }
     

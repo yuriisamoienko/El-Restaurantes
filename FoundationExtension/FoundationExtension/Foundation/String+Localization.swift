@@ -16,12 +16,6 @@ public extension String {
     // MARK: Namespaces
     
     class Localizations {
-        public var map: String {
-            "k_map".localized
-        }
-        public var list: String {
-            "k_list".localized
-        }
         public var error: String {
             "k_error".localized
         }

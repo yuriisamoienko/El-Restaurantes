@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FoundationExtension
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,22 +16,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     // MARK: Private Properties
+    
     private var dependenciesInjector: DependenciesInjectorProtocol = DependenciesInjector()
+    
+    // MARK: Dependency injection
     
     @Inject private var appRouter: RootAppRouterProtocol
 
     // MARK: Public Functions
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-        
-        UINavigationBar.appearance().barTintColor = .appThemeBackground// .init(hexString: "0073FA")  // solid color
-        
-        UIBarButtonItem.appearance().tintColor = .white
-        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
-//        UITabBar.appearance().barTintColor = .blue
-//        UITabBar.appearance().tintColor = .white
-        
+        configureGlobalAppStyle()
         dependenciesInjector.inject()
         configureWindow()
         return true
@@ -44,6 +40,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window.rootViewController = appRouter.getRootViewController()
         window.makeKeyAndVisible()
+    }
+    
+    private func configureGlobalAppStyle() {
+        UINavigationBar.appearance().barTintColor = .appThemeBackground // solid background color
+        UIBarButtonItem.appearance().tintColor = .white
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
     }
 }
 

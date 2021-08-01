@@ -9,6 +9,8 @@ import UIKit
 
 class UITableViewCellBase: UITableViewCell {
     
+    // MARK: Public Functions
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         postInit()

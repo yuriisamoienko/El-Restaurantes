@@ -8,6 +8,11 @@
 import Foundation
 import FoundationExtension
 
+/*
+ Data representation of a restaurant.
+ Future - save in locale storage
+ */
+
 struct RestaurantEntity: EasyCodable {
     
     // MARK: Types

@@ -27,20 +27,13 @@ class UIViewControllerBase: UIViewController, UINavigationBarDisplayer {
         super.viewWillAppear(animated)
         printFuncLog("class: \(self.className()), animated = \(animated)")
         
-//        if didAppearOnce == false { // first appear
-            showNavigationControllerBarIfNeeded()
-//        }
+        showNavigationControllerBarIfNeeded()
     }
 
     override func viewDidAppear(_ animated: Bool) {
-//        let didAppearOnce = self.didAppearOnce
         super.viewDidAppear(animated)
         self.didAppearOnce = true
         printFuncLog("class: \(self.className()), animated = \(animated)")
-        
-//        if didAppearOnce == true { // non first appear
-//            showNavigationControllerBarIfNeeded()
-//        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -53,35 +46,4 @@ class UIViewControllerBase: UIViewController, UINavigationBarDisplayer {
         printFuncLog("class: \(self.className()), animated = \(animated)")
     }
 
-}
-
-enum NavigationBarVisibility {
-    case none
-    case show
-    case hide
-}
-
-protocol UINavigationBarDisplayer: UIViewController {
-    
-    // vc must have this flag variables
-    var navigationBarVisibility: NavigationBarVisibility { set get }
-    var didAppearOnce: Bool { get }
-    
-}
-
-extension UINavigationBarDisplayer {
-    
-    func showNavigationControllerBarIfNeeded() {
-        switch navigationBarVisibility {
-        case .hide:
-            hideNavigationControllerBar()
-            
-        case .show:
-            showNavigationControllerBar()
-            
-        default:
-            break
-        }
-    }
-    
 }

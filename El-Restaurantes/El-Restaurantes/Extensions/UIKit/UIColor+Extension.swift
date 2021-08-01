@@ -7,6 +7,13 @@
 
 import UIKit
 
+/*
+ Contains aoo theme colors list
+ 
+ example:
+ let color: UIColor = .appThemeBackground
+ */
+
 extension UIColor {
     
     static var appThemeBackground: UIColor = .init(hexString: "0073FA")

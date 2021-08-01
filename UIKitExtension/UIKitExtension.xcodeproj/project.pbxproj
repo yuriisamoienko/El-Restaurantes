@@ -23,6 +23,7 @@
 		5A9BE55626B71B6F0081FF1C /* FoundationExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A9BE55526B71B6F0081FF1C /* FoundationExtension.framework */; };
 		5A9BE55726B71B6F0081FF1C /* FoundationExtension.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5A9BE55526B71B6F0081FF1C /* FoundationExtension.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5A9BE55B26B71C090081FF1C /* UIAnchorsOwnerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9BE55A26B71C090081FF1C /* UIAnchorsOwnerProtocol.swift */; };
+		5A9BE57326B726580081FF1C /* UINavigationBarDisplayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9BE57226B726580081FF1C /* UINavigationBarDisplayer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -57,6 +58,7 @@
 		5A9BE54D26B71ADF0081FF1C /* NSLayoutDimension+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutDimension+Extension.swift"; sourceTree = "<group>"; };
 		5A9BE55526B71B6F0081FF1C /* FoundationExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FoundationExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A9BE55A26B71C090081FF1C /* UIAnchorsOwnerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAnchorsOwnerProtocol.swift; sourceTree = "<group>"; };
+		5A9BE57226B726580081FF1C /* UINavigationBarDisplayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationBarDisplayer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +93,7 @@
 		5A9BE51426B719D40081FF1C /* UIKitExtension */ = {
 			isa = PBXGroup;
 			children = (
+				5A9BE56D26B724C50081FF1C /* BaseClasses */,
 				5A9BE55926B71BEA0081FF1C /* Protocols */,
 				5A9BE51D26B71A5B0081FF1C /* UIKit */,
 				5A9BE51526B719D40081FF1C /* UIKitExtension.h */,
@@ -130,8 +133,16 @@
 			isa = PBXGroup;
 			children = (
 				5A9BE55A26B71C090081FF1C /* UIAnchorsOwnerProtocol.swift */,
+				5A9BE57226B726580081FF1C /* UINavigationBarDisplayer.swift */,
 			);
 			path = Protocols;
+			sourceTree = "<group>";
+		};
+		5A9BE56D26B724C50081FF1C /* BaseClasses */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = BaseClasses;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -216,6 +227,7 @@
 				5A9BE52C26B71A5B0081FF1C /* UIEdgeInsets+Extension.swift in Sources */,
 				5A9BE53326B71A5B0081FF1C /* UIViewController+Extension.swift in Sources */,
 				5A9BE53226B71A5B0081FF1C /* UIVIewController+Alert.swift in Sources */,
+				5A9BE57326B726580081FF1C /* UINavigationBarDisplayer.swift in Sources */,
 				5A9BE55B26B71C090081FF1C /* UIAnchorsOwnerProtocol.swift in Sources */,
 				5A9BE52F26B71A5B0081FF1C /* UIStackView+Extension.swift in Sources */,
 				5A9BE52B26B71A5B0081FF1C /* UIColor+Extension.swift in Sources */,

@@ -8,6 +8,7 @@
 import Foundation
 import MapKit
 import UIKitExtension
+import FoundationExtension
 
 typealias CLLocationResult = Result<CLLocation, Error>
 

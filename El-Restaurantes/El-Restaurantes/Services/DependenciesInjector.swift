@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import FoundationExtension
 
 open class DependenciesInjector: NSObject, DependenciesInjectorProtocol {
 

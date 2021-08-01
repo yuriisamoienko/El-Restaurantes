@@ -14,11 +14,11 @@ public extension URLSession {
     var hostsWithPassword: [String] {
         set {}
         get {
-            return ["http://tourstart.info/", "https://tourstart.info/", "https://ng.tourstart.org/"]
+            return ["http://somehost.com/", "https://otherhost.com/"]
         }
     }
     
-    private static var standart: URLSession {
+    static var standart: URLSession {
         URLSession(configuration: .default)
     }
     
@@ -40,16 +40,16 @@ public extension URLSession {
         return result
     }
     
-    static func runDefaultDataTask(with url: URL, timeout: Double = 99, completionHandler: @escaping URLSessionCompletionHandler) {
+    func runDefaultDataTask(with url: URL, timeout: Double = 99, completionHandler: @escaping URLSessionCompletionHandler) {
         DispatchQueue.background.async {
-            let task: URLSessionDataTask = standart.safeDataTask(with: url, timeout: timeout, completionHandler: completionHandler)
+            let task: URLSessionDataTask = self.safeDataTask(with: url, timeout: timeout, completionHandler: completionHandler)
             task.resume()
         }
     }
     
-    static func runDefaultDataTask(with urlString: String, timeout: Double = 99, completionHandler: @escaping URLSessionCompletionHandler) {
+    func runDefaultDataTask(with urlString: String, timeout: Double = 99, completionHandler: @escaping URLSessionCompletionHandler) {
         DispatchQueue.background.async {
-            guard let task: URLSessionDataTask = standart.safeDataTask(with: urlString, timeout: timeout, completionHandler: completionHandler) else {
+            guard let task: URLSessionDataTask = self.safeDataTask(with: urlString, timeout: timeout, completionHandler: completionHandler) else {
                 return
             }
             task.resume()
