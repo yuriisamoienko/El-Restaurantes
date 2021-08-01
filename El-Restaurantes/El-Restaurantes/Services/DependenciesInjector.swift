@@ -8,6 +8,10 @@
 import Foundation
 import FoundationExtension
 
+/*
+ Service for injection of all app services
+ */
+
 open class DependenciesInjector: NSObject, DependenciesInjectorProtocol {
 
     // MARK: Public Functions

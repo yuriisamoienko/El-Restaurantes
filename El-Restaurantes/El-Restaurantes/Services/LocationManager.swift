@@ -10,7 +10,12 @@ import MapKit
 import UIKitExtension
 import FoundationExtension
 
-typealias CLLocationResult = Result<CLLocation, Error>
+/*
+ Service for general access to user's location
+ 
+ To use it, please do Inject:
+ @Inject private var locationManager: LocationManagerProtocol
+*/
 
 protocol LocationManagerProtocol {
     
@@ -24,6 +29,8 @@ protocol LocationManagerProtocol {
     func add(observer: AnyObject, callback: @escaping (CLLocationResult) -> Void)
     func remove(observer: AnyObject)
 }
+
+typealias CLLocationResult = Result<CLLocation, Error>
 
 class LocationManager: NSObject, LocationManagerProtocol, CLLocationManagerDelegate {
     
