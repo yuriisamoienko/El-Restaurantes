@@ -119,8 +119,7 @@ final class LocationManager: NSObject, LocationManagerProtocol, CLLocationManage
                 locationManager.requestWhenInUseAuthorization()
                 
             case .restricted, .denied:
-                //TODO localize
-                vc.alert.showQuestionAlert(title: "No location", message: "Please enable location service") { response in
+                vc.alert.showQuestionAlert(title: .localize.noLocation, message: .localize.pleaseEnableLocationService) { response in
                     guard response == true,
                           let url = URL(string: UIApplication.openSettingsURLString),
                           UIApplication.shared.canOpenURL(url) == true

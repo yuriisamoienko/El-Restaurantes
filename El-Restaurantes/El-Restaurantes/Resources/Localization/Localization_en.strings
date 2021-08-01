@@ -9,3 +9,8 @@
 "k_map" = "map";
 "k_list" = "list";
 "k_error" = "error";
+"k_no_location" = "No location";
+"k_enable_location_service" = "Please enable location service";
+"k_no" = "no";
+"k_yes" = "yes";
+

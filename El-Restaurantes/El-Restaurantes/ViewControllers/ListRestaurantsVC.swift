@@ -144,7 +144,8 @@ final class ListRestaurantsVC: UITableViewControllerBase {
                 self.dataList = list
                 
             case .failure(let error):
-                alert.showErrorAlert(error: error)
+                //alert.showErrorAlert(error: error)
+                printFuncLog(error: error)
             }
         }
     }

@@ -31,12 +31,12 @@ public extension UIViewController {
         public func showQuestionAlert(title: String?, message: String?, closeCallback: @escaping (Bool) -> Void) {
             let alertController = UIAlertController.init(title: title, message: message, preferredStyle: .alert)
             //TODO translate 'No'
-            let noAction = UIAlertAction.init(title: ("No").localized, style: .default) { (_) in
+            let noAction = UIAlertAction.init(title: .localize.no.capitalized, style: .default) { (_) in
                 closeCallback(false)
             }
 
             //TODO translate 'Yes'
-            let yesAction = UIAlertAction.init(title: ("Yes").localized, style: .default) { (_) in
+            let yesAction = UIAlertAction.init(title: .localize.yes.capitalized, style: .default) { (_) in
                 closeCallback(true)
             }
             alertController.addAction(noAction)
@@ -61,7 +61,7 @@ public extension UIViewController {
         }
         
         public func showErrorAlert(message: String, closeCallback: (() -> Void)? = nil) {
-            showAlert(title: .localize.error, message: message, closeCallback: closeCallback)
+            showAlert(title: .localize.error.capitalized, message: message, closeCallback: closeCallback)
         }
         
         // MARK: Private Functions

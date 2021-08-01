@@ -74,3 +74,13 @@ extension String: Localizable {
     }
     
 }
+
+public extension String.Localizations {
+    
+    var no: String {
+        "k_no".localized
+    }
+    var yes: String {
+        "k_yes".localized
+    }
+}

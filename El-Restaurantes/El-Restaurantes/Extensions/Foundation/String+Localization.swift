@@ -25,5 +25,12 @@ extension String.Localizations {
     var list: String {
         "k_list".localized
     }
+    var noLocation: String {
+        "k_no_location".localized
+    }
+    var pleaseEnableLocationService: String {
+        "k_enable_location_service".localized
+    }
+    
     
 }
