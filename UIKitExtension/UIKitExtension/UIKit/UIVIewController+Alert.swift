@@ -64,7 +64,9 @@ public extension UIViewController {
         // MARK: Private Functions
         
         private func presentAlert(_ alert: UIAlertController, animated: Bool = true) {
-            viewController.present(viewController: alert, animated: animated)
+            DispatchQueue.main.async {
+                self.viewController.present(viewController: alert, animated: animated)
+            }
         }
     }
 

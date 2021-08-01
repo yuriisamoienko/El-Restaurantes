@@ -13,57 +13,22 @@ import FoundationExtension
  A list of fetched restaurants (from the nearest).
  */
 
-final class ListRestaurantsVC: UITableViewControllerBase {
+protocol ListRestaurantsVcProtocol: UIViewController {
+    
+    func reloadList()
+    func endUpdating()
+}
+
+final class ListRestaurantsVC: UITableViewControllerBase, ListRestaurantsVcProtocol {
+    
+    // MARK: Public Properties
+    
+    public var presenter: ListRestaurantsPresenterProtocol?
     
     // MARK: Private Properties
     
-    // sorted from nearest
-    private var _dataList: [RestaurantEntity] = [] {
-        didSet {
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        }
-    }
-    private var dataList: [RestaurantEntity] {
-        set {
-            self.locationManager.getLocation { [unowned self] locationResult in
-                self.itemDistanceDict.removeAll()
-                switch locationResult {
-                case .failure(let error):
-                    self.alert.showErrorAlert(error: error)
-                    self._dataList = newValue
-                
-                case .success(let userLocation):
-                    
-                    self._dataList = newValue.sorted(by: { lhs, rhs in
-                        let leftDistance = self.getDistance(from: lhs, to: userLocation)
-                        let rightDistance = self.getDistance(from: rhs, to: userLocation)
-                        return leftDistance < rightDistance
-                    })
-                }
-            }
-        }
-        get {
-            return _dataList
-        }
-    }
-    private var itemDistanceDict: [Int: Double] = [:]
-    private func getDistance(from entity: RestaurantEntity, to userLocation: CLLocation) -> Double {
-        if let result = itemDistanceDict[entity.id] {
-            return result
-        }
-        let data = entity.location
-        let location = CLLocation(latitude: data.latitude, longitude: data.longtitude)
-        let result = userLocation.distance(from: location)
-        itemDistanceDict[entity.id] = result
-        return result
-    }
-    
     // MARK: Dependency injection
     
-    @Inject private var locationManager: LocationManagerProtocol
-    @Inject private var restaurantsRepository: RestaurantsRepositoryProtocol
     @Inject private var appRouter: RootAppRouterProtocol
 
     // MARK: Overriden functions
@@ -76,18 +41,31 @@ final class ListRestaurantsVC: UITableViewControllerBase {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        let didAppearOnce = self.didAppearOnce
         super.viewDidAppear(animated)
-        if didAppearOnce == false || dataList.isEmpty == true {
-            reloadData()
-        }
+        
+        presenter?.updateView(force: false)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+    }
+    
+    // MARK: ListRestaurantsVcProtocol
+    
+    func reloadList() {
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+    
+    func endUpdating() {
+        DispatchQueue.main.async {
+            self.refreshControl?.endRefreshing()
+        }
     }
 
     // MARK: - Table view data source
@@ -97,14 +75,14 @@ final class ListRestaurantsVC: UITableViewControllerBase {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let result = dataList.count
+        let result = presenter?.getDataList().count ?? 0
         return result
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = indexPath.row
-        guard let item = self.dataList.element(at: row) else {
+        guard let item = presenter?.getDataList().element(at: row) else {
             fatalMistake("can't get item at row \(row)")
             return UITableViewCell()
         }
@@ -114,14 +92,14 @@ final class ListRestaurantsVC: UITableViewControllerBase {
         cell.name = item.name
         cell.price = item.priceRange
         cell.address = item.location.address
-        cell.distance = itemDistanceDict[item.id] ?? 0
+        cell.distance = presenter?.getDistanceTo(id: item.id) ?? 0
 
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let row = indexPath.row
-        guard let item = self.dataList.element(at: row) else {
+        guard let item = presenter?.getDataList().element(at: row) else {
             fatalMistake("can't get item at row \(row)")
             return
         }
@@ -147,25 +125,9 @@ final class ListRestaurantsVC: UITableViewControllerBase {
     private func refresh(_ sender: AnyObject) {
         // it feels not working without delay
         debounce(queue: .background, delay: 1.0) { [unowned self] in
-            self.reloadData()
+            self.presenter?.updateView(force: true)
         }
         
-    }
-    
-    private func reloadData() {
-        restaurantsRepository.getAllrestaurants { [unowned self] (result: Result<[RestaurantEntity], Error>) in
-            DispatchQueue.main.async {
-                self.refreshControl?.endRefreshing()
-            }
-            switch result {
-            case .success(let list):
-                self.dataList = list
-                
-            case .failure(let error):
-                //alert.showErrorAlert(error: error)
-                printFuncLog(error: error)
-            }
-        }
     }
     
 }

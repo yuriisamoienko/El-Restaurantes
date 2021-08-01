@@ -26,8 +26,10 @@ final class ViewControllerFactory: ViewControllerFactoryProtocol {
     }
     
     func createListRestaurants() -> UIViewController {
-        let result = ListRestaurantsVC()
-        return result
+        let vc = ListRestaurantsVC()
+        let presenter: ListRestaurantsPresenterProtocol = ListRestaurantsPresenter(view: vc)
+        vc.presenter = presenter
+        return vc
     }
     
     func createRestaurantFullInfo(with entity: RestaurantEntity) -> UIViewController {
