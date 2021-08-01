@@ -19,7 +19,6 @@ import FoundationExtension
 
 protocol LocationManagerProtocol {
     
-    func isLocationServiceAuthorized() -> Bool
     func getLocation(_ callback: @escaping ((CLLocationResult) -> Void))
     func requestLocation(from vc: UIViewController, callback: @escaping (CLAuthorizationStatus) -> Void)
     
@@ -83,21 +82,6 @@ final class LocationManager: NSObject, LocationManagerProtocol, CLLocationManage
         let container = WeakContainer(observer)
         self.observers[container] = callback
         self.startMonitorLocation()
-    }
-    
-    func isLocationServiceAuthorized() -> Bool {
-        var result = false
-        let enabled = isLocationServicesEnabled() // is enabled on device
-        if enabled == true {
-            let authorizationStatus = self.getAuthorizationStatus()
-            switch authorizationStatus {
-            case .authorizedAlways, .authorizedWhenInUse:
-                result = true
-            default:
-                break
-            }
-        }
-        return result
     }
     
     func getAuthorizationStatus() -> CLAuthorizationStatus {
