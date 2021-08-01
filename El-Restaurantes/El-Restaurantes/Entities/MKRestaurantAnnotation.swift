@@ -8,6 +8,10 @@
 import Foundation
 import MapKit
 
+/*
+    Inherited from MKPointAnnotation to contain RestaurantEntity
+ */
+
 final class MKRestaurantAnnotation: MKPointAnnotation {
     
     let entity: RestaurantEntity

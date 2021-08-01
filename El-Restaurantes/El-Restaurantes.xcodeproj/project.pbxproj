@@ -28,7 +28,6 @@
 		5A9BE56B26B724630081FF1C /* String+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9BE56A26B724630081FF1C /* String+Localization.swift */; };
 		5A9BE57526B728190081FF1C /* RestaurantsRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9BE57426B728190081FF1C /* RestaurantsRepositoryProtocol.swift */; };
 		5AD72AD426B15F9B0072CD9C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD72AD326B15F9B0072CD9C /* AppDelegate.swift */; };
-		5AD72AD626B15F9B0072CD9C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD72AD526B15F9B0072CD9C /* SceneDelegate.swift */; };
 		5AD72AD826B15F9B0072CD9C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD72AD726B15F9B0072CD9C /* ViewController.swift */; };
 		5AD72ADD26B15F9C0072CD9C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5AD72ADC26B15F9C0072CD9C /* Images.xcassets */; };
 		5AD72AE026B15F9C0072CD9C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5AD72ADE26B15F9C0072CD9C /* LaunchScreen.storyboard */; };
@@ -78,7 +77,6 @@
 		5A9BE57426B728190081FF1C /* RestaurantsRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsRepositoryProtocol.swift; sourceTree = "<group>"; };
 		5AD72AD026B15F9B0072CD9C /* El-Restaurantes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "El-Restaurantes.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AD72AD326B15F9B0072CD9C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		5AD72AD526B15F9B0072CD9C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		5AD72AD726B15F9B0072CD9C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		5AD72ADC26B15F9C0072CD9C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		5AD72ADF26B15F9C0072CD9C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -146,7 +144,6 @@
 		5A9BE4DF26B690CA0081FF1C /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
-				5A9BE4E026B690D90081FF1C /* MKRestaurantAnnotation.swift */,
 			);
 			path = SupportingFiles;
 			sourceTree = "<group>";
@@ -220,11 +217,9 @@
 				5AD72AEE26B1D5280072CD9C /* Entities */,
 				5A9BE56526B71C600081FF1C /* Extensions */,
 				5AD72AE126B15F9C0072CD9C /* Info.plist */,
-				5AD72ADE26B15F9C0072CD9C /* LaunchScreen.storyboard */,
 				5AD72AED26B1D51D0072CD9C /* Presenters */,
 				5A9BE4A826B48B3B0081FF1C /* Repository */,
 				5AD72AEF26B1D5350072CD9C /* Resources */,
-				5AD72AD526B15F9B0072CD9C /* SceneDelegate.swift */,
 				5AD72AEC26B1D50C0072CD9C /* Services */,
 				5A9BE4DF26B690CA0081FF1C /* SupportingFiles */,
 				5AD72AEB26B1D4B90072CD9C /* ViewControllers */,
@@ -274,6 +269,7 @@
 		5AD72AEE26B1D5280072CD9C /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				5A9BE4E026B690D90081FF1C /* MKRestaurantAnnotation.swift */,
 				5A9BE4AF26B493AE0081FF1C /* RestaurantEntity.swift */,
 			);
 			path = Entities;
@@ -282,6 +278,7 @@
 		5AD72AEF26B1D5350072CD9C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5AD72ADE26B15F9C0072CD9C /* LaunchScreen.storyboard */,
 				5A9BE49C26B486ED0081FF1C /* Localization */,
 				5A9BE49B26B486E20081FF1C /* Images */,
 			);
@@ -395,7 +392,6 @@
 				5AD72AF426B1D77D0072CD9C /* MainTabBarController.swift in Sources */,
 				5A9BE4AE26B48C910081FF1C /* ApiMethods.swift in Sources */,
 				5AD72AD426B15F9B0072CD9C /* AppDelegate.swift in Sources */,
-				5AD72AD626B15F9B0072CD9C /* SceneDelegate.swift in Sources */,
 				5A9BE4EC26B698D30081FF1C /* RootAppRouter.swift in Sources */,
 				5A9BE4B026B493AE0081FF1C /* RestaurantEntity.swift in Sources */,
 				5A9BE4E126B690D90081FF1C /* MKRestaurantAnnotation.swift in Sources */,
